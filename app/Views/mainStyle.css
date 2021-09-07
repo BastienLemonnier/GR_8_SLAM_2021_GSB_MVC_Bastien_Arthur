@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'Comfortaa';
+	src: url('fonts/Comfortaa.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Tommy';
+	src: url('fonts/Tommy.otf') format('truetype');
+}
+
+h1, h2, h3, p {
+	color: #048B9A;
+}
+
+h1, h2, h3 {
+	font-family: Comfortaa;
+}
+
+body {
+	background-color: #4CA66B;
+}
+
+header, nav, section, form {
+	background-color: #FFF0B8;
+	color: #048B9A;
+	font-family: Tommy;
+	
+	border-color: #444444;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 10px;
+	
+	display: block;
+	margin: 20px auto;
+	max-width: 600px;
+	
+	height: auto;
+	padding: 10px 10px;
+	
+	text-align: center;
+}
+
+input {
+	margin: 10px;
+	padding: 4px;
+	
+	border-color: #444444;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+}
+
+a {
+	color: #3498DB;
+}
+
+a:visited {
+	color: #884EA0;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 20px auto;
+	max-width: 400px;
+}
+
+td, th {
+	border: 2px solid #444444;
+	padding: 5px 10px;
+}
+
+th {
+	font-family: Comfortaa;
+	font-weight: 20px;
+	font-size: 25px;
+}
