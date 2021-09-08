@@ -1,5 +1,6 @@
 <?php
-	include("fonctions/openSession.php");
+	//Ajouter ouverture de session
+	//include("fonctions/openSession.php");
 ?>
 <!DOCTYPEhtml>
 <html lang = "fr">
@@ -28,7 +29,9 @@
 			<select id = "month" name = "month_select" id = "month_select" >
 				<?php
 					
-					$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
+					//Ajouter options select et selectionner options du mois choisi ou du mois courant
+					
+					/*$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
 					
 					if( isset($_SESSION['mois']) ) {
 						$moisChoisi = $_SESSION['mois'];
@@ -42,7 +45,7 @@
 						} else {
 							echo "<option value = '".$i."' >".$mois[$i]."</option>";
 						}
-					}
+					}*/
 				
 				?>
 			</select>
