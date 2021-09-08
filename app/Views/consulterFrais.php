@@ -14,7 +14,9 @@
 		<header>
 			<h1>Page de consultation des frais</h1>
 			<?php
-				echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
+				//affichage nom et prénom de l'utilisateur
+				
+				//echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
 			?>
 		</header>
 		
@@ -30,7 +32,7 @@
 				<?php
 					
 					//Ajouter options select et selectionner options du mois choisi ou du mois courant
-					
+
 					/*$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
 					
 					if( isset($_SESSION['mois']) ) {
