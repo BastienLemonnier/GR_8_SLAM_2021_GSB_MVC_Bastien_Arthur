@@ -7,7 +7,7 @@
 	<head>
 		<meta charset = "utf-8"/>
 		<title>GSB</title>
-		<link rel = "stylesheet" href = "mainStyle.css"/>
+		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
@@ -15,7 +15,7 @@
 			<h1>Page de consultation des frais</h1>
 			<?php
 				//affichage nom et prénom de l'utilisateur
-				
+
 				//echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
 			?>
 		</header>

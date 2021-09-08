@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>GSB</title>
-		<link rel="stylesheet" href="mainStyle.css">
+		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
