@@ -2,10 +2,10 @@
 <!DOCTYPEhtml>
 
 <?php
+	
 	if( isset($_SESSION['connected']) ) {
 		if($_SESSION['connected']) {
-			header ('Location: consulterFrais.php');
-			exit();
+			
 		}
 	} else {
 		unset($_SESSION['mois']);
@@ -16,7 +16,7 @@
 	<head>
 		<meta charset = "utf-8"/>
 		<title>GSB</title>
-		<link rel = "stylesheet" href = "mainStyle.css"/>
+		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
@@ -24,15 +24,15 @@
 			<h1>Page d'accueil et de connexion</h1>
 		</header>
 		
-		<form action = "fonctions/seConnecter.php" method = "post"><!-- formulaire de connexion -->
+		<form action = <?php echo base_url("public/index.php");?> method = "post"><!-- formulaire de connexion -->
 			<h2>Connexion</h2>
 			
 			<label for = "login">Login :</label>
-			<input type = "text" id = "login" name = "user_login"/>
+			<input type = "text" id = "login" name = "connexion_login"/>
 			<br/>
 			
 			<label for = "pswd">Mot de passe :</label>
-			<input type = "password" id = "pswd" name = "user_password"/>
+			<input type = "password" id = "pswd" name = "connexion_password"/>
 			<br/>
 			
 			<?php
