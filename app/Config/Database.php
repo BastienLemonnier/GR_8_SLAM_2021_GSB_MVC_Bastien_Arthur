@@ -31,11 +31,61 @@ class Database extends Config
      * @var array
      */
     public $default = [
-        'DSN'      => '',
+        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
         'hostname' => 'localhost',
-        'username' => '',
-        'password' => '',
-        'database' => '',
+        'username' => 'guestUser',
+        'password' => 'GSBmdp',
+        'database' => 'GDBV2',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port'     => 3306,
+    ];
+	
+	/**
+     * The database connection for guests.
+     *
+     * @var array
+     */
+    public $guest = [
+        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
+        'hostname' => 'localhost',
+        'username' => 'guestUser',
+        'password' => 'GSBmdp',
+        'database' => 'GDBV2',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => false,
+        'DBDebug'  => (ENVIRONMENT !== 'production'),
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'encrypt'  => false,
+        'compress' => false,
+        'strictOn' => false,
+        'failover' => [],
+        'port'     => 3306,
+    ];
+	
+	/**
+     * The database connection for authenticated user.
+     *
+     * @var array
+     */
+    public $auth = [
+        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
+        'hostname' => 'localhost',
+        'username' => 'authUser',
+        'password' => 'GSBmdp',
+        'database' => 'GDBV2',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
