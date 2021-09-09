@@ -1,6 +1,7 @@
 <?php
 	//Ajouter ouverture de session
 	//include("fonctions/openSession.php");
+	session_start();
 ?>
 <!DOCTYPEhtml>
 <html lang = "fr">
@@ -16,7 +17,7 @@
 			<?php
 				//affichage nom et prénom de l'utilisateur
 
-				//echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
+				echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
 			?>
 		</header>
 		
@@ -24,7 +25,7 @@
 			<a href=<?php echo base_url ("public/index.php?action='deconnexion'");?>>Se déconnecter</a>
 		</nav>
 		
-		<form action = "consulterFrais.php" method = "post"><!-- formulaire de choix de mois -->
+		<form action = "<?php echo base_url ("public/index.php");?>" method = "post"><!-- formulaire de choix de mois -->
 			<h2>Changer mois de consultation</h2>
 			
 			<label for = "month_select">Mois :</label>
@@ -33,7 +34,7 @@
 					
 					//Ajouter options select et selectionner options du mois choisi ou du mois courant
 
-					/*$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
+					$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
 					
 					if( isset($_SESSION['mois']) ) {
 						$moisChoisi = $_SESSION['mois'];
@@ -47,7 +48,7 @@
 						} else {
 							echo "<option value = '".$i."' >".$mois[$i]."</option>";
 						}
-					}*/
+					}
 				
 				?>
 			</select>
