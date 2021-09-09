@@ -17,15 +17,17 @@ class Pages extends BaseController
             $login = $_POST['connexion_login'];
             $password = $_POST['connexion_password'];
         }
-        if(isset($_POST['']))
+        $month = (int)date('m');
+        if(isset($_POST['month_select']))
         {
-
+            $action = 'consulterFrais';
+            $month = $_POST['month_select'];
         }
 
         switch($action)
         {
             case 'consulterFrais' :
-                $this -> consulterFrais();
+                $this -> consulterFrais($month);
                 break;
             case 'connexion' :
                 $this -> connexion($login, $password);
@@ -44,18 +46,19 @@ class Pages extends BaseController
 
     public function connexion($login, $password)
     {
-        $Compte = new \App\Models\Compte();
+        $Compte = new \App\Controllers\Compte();
 
         $Compte -> connexion($login, $password);
+        $month = (int)date('m');
 
-        $this -> consulterFrais();
+        $this -> consulterFrais($month);
     }
 	
-	public function consulterFrais()
+	public function consulterFrais($month)
 	{
         $Modele = new \App\Models\Modele();
 
-        $Modele -> getFraisMoisChoisis();
+        $Modele -> getFraisMoisChoisis($month);
 
 		echo view('consulterFrais');
 	}

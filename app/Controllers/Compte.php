@@ -10,7 +10,7 @@ class Compte extends BaseController
 		
         $Modele = new \App\Models\Modele();
         
-        $exist = $Modele -> isUserExists(); //on vient voir si l'utilisateur existe
+        $exist = $Modele -> isUserExists($login); //on vient voir si l'utilisateur existe
         
         if ( $exist ) { //si l'utilisateur existe
             
