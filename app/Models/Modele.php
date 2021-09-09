@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Modele extends Model
+class Modele
 {
     const LISTEMOIS = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -77,6 +77,6 @@ class Modele extends Model
             }
         }
 
-        return $fraisForfait;
+        $_SESSION['FraisForfait'] = $fraisForfait;
     }
 }
