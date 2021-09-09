@@ -1,15 +1,15 @@
-<?php session_start(); ?>
+<?php //session_start(); ?>
 <!DOCTYPEhtml>
 
 <?php
-	
-	if( isset($_SESSION['connected']) ) {
+	// je sais pas trop
+	/*if( isset($_SESSION['connected']) ) {
 		if($_SESSION['connected']) {
 			
 		}
 	} else {
 		unset($_SESSION['mois']);
-	}
+	}*/
 ?>
 
 <html lang = "fr">
@@ -36,7 +36,8 @@
 			<br/>
 			
 			<?php
-				if( isset($_SESSION['error']) ) {
+				//detection d'erreurs
+				/*if( isset($_SESSION['error']) ) {
 					switch($_SESSION['error']) {
 						case 1 :
 							echo "<span class='error'>Cet utilisateur n'existe pas.</span><br/>";
@@ -48,7 +49,7 @@
 							echo "<span class='error'>Hého ! On ne joue pas avec les cookies !</span><br/>";
 							break;
 					}
-				}
+				}*/
 			?>
 			
 			<input type="submit" value="Se connecter"/>

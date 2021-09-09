@@ -17,8 +17,8 @@
 		</header>
 		
 		<nav>
-			<a href="fonctions/seDeconnecter.php">Se déconnecter</a> / 
-			<a href="consulterFrais.php">Consultation frais</a>
+			<a href=<?php echo base_url ("public/index.php?action='deconnexion'");?>>Se déconnecter</a>
+			<a href=<?php echo base_url ("public/index.php?action='consulterFrais'");?>>Consultation frais</a>
 		</nav>
 		
 		<form action="fonctions/envoyerFrais.php" method="post" >

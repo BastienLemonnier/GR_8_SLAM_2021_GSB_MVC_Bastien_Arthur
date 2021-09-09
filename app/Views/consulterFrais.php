@@ -21,7 +21,7 @@
 		</header>
 		
 		<nav>
-			<a href="fonctions/seDeconnecter.php">Se déconnecter</a>
+			<a href=<?php echo base_url ("public/index.php?action='deconnexion'");?>>Se déconnecter</a>
 		</nav>
 		
 		<form action = "consulterFrais.php" method = "post"><!-- formulaire de choix de mois -->
