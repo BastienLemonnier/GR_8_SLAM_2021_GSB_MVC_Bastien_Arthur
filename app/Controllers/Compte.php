@@ -9,24 +9,26 @@ class Compte extends BaseController
         session_start();
 		
         $Modele = new \App\Models\Modele();
+        $Pages = new \App\Controllers\Pages();
         
         $exist = $Modele -> isUserExists($login); //on vient voir si l'utilisateur existe
         
         if ( $exist ) { //si l'utilisateur existe
             
             $pass = $Modele -> getUserPassword($login); //on vient chercher le mot de passe de l'utilisateur
+            //print_r($pass[0] -> mdp);
             
             if ( $pass == $password ) { //si le mot de passe est bon
                 
                 $_SESSION['connected'] = TRUE;
                 $_SESSION['login'] = $login;
 
-                $names = $Modele -> getUserName($login);
+                $name = $Modele -> getUserName($login);
                 
-                $_SESSION['nom'] = $names['nom'];
+                $_SESSION['nom'] = $name['nom'];
                 $_SESSION['prenom'] = $name['prenom'];
                 
-                echo Pages.consulterFrais();
+                echo $Pages -> consulterFrais((int)date('m'));
                 exit();
                 
             } else {
@@ -37,7 +39,7 @@ class Compte extends BaseController
             $_SESSION['error'] = 1;
         }
 
-        echo Pages.accueil();
+        echo $Pages -> accueil();
     }
 
     public function deconnexion()
