@@ -29,6 +29,9 @@ class Pages extends BaseController
             case 'consulterFrais' :
                 $this -> consulterFrais($month);
                 break;
+            case 'saisirFrais' :
+                $this -> saisirFrais();
+                break;
             case 'connexion' :
                 $this -> connexion($login, $password);
                 break;
@@ -58,7 +61,7 @@ class Pages extends BaseController
 	{
         $Modele = new \App\Models\Modele();
 
-        $Modele -> getFraisMoisChoisis($month);
+        //$Modele -> getFraisMoisChoisis($month);
 
 		echo view('consulterFrais');
 	}
