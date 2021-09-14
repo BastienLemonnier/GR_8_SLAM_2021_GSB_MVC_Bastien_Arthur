@@ -1,7 +1,5 @@
 <?php
-	include("fonctions/openSession.php");
-	
-	include("fonctions/recupMoisCourant.php");
+	session_start();
 ?>
 <!DOCTYPEhtml>
 <html lang = "fr">
@@ -21,8 +19,8 @@
 			<a href=<?php echo base_url ("public/index.php?action='consulterFrais'");?>>Consultation frais</a>
 		</nav>
 		
-		<form action="fonctions/envoyerFrais.php" method="post" >
-			<h2>Frais forfaitaires du mois de <?php echo $moisCourant; ?> :</h2>
+		<form action="<?php echo base_url ("public/index.php");?>" method="post" >
+			<h2>Frais forfaitaires du mois de <?php echo $_SESSION['mois']; ?> :</h2>
 			
 			<label for="etapes">Nombre d'étapes :</label>
 			<input type="number" id="etapes" name="nombre_etapes" value="<?php echo $Etapes;?>"/><br/>
@@ -39,7 +37,7 @@
 			<input type="submit" value="Envoyer"/>
 		</form>
 		
-		<form action="fonctions/envoyerAutreFrais.php" method="post" >
+		<form action="<?php echo base_url ("public/index.php");?>" method="post" >
 			<h2>Autres frais :</h2>
 			
 			<label for="libelle">Libellé :</label>

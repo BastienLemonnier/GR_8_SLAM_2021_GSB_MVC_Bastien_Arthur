@@ -1,8 +1,3 @@
-<?php
-	//Ajouter ouverture de session
-	//include("fonctions/openSession.php");
-	session_start();
-?>
 <!DOCTYPEhtml>
 <html lang = "fr">
 	<head>
@@ -22,7 +17,7 @@
 		</header>
 		
 		<nav>
-			<a href=<?php echo base_url ("public/index.php?action='deconnexion'");?>>Se déconnecter</a>
+			<a href="<?php echo base_url ("public/index.php?action=deconnexion");?>">Se déconnecter</a>
 		</nav>
 		
 		<form action = "<?php echo base_url ("public/index.php");?>" method = "post"><!-- formulaire de choix de mois -->
@@ -54,7 +49,7 @@
 			</select>
 			
 			<input type = "submit" value = "Valider"/><br/>
-			<a href="SaisirFrais.php">Saisie frais</a>
+			<a href="<?php echo base_url ("public/index.php?action=saisirFrais");?>">Saisie frais</a>
 		</form>
 		
 		<div id="affichageFraisMois">
