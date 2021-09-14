@@ -10,11 +10,11 @@ class Modele
     {
         $db = db_connect("guest");
 
-        $sql = "SELECT EXISTS(SELECT * FROM Visiteur WHERE login = ?);";
+        $sql = "SELECT EXISTS(SELECT * FROM Visiteur WHERE login = ?) AS 'exist';";
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 
-        return $resultat[0][0];
+        return $resultat[0] -> exist;
     }
 
     public function getUserId($login)
@@ -25,7 +25,7 @@ class Modele
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 
-        return $resultat[0][0];
+        return $resultat[0] -> id;
     }
 
     public function getUserPassword($login)
@@ -36,7 +36,7 @@ class Modele
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 
-        return $resultat[0][0];
+        return $resultat[0] -> mdp;
     }
 
     public function getUserName($login)
@@ -47,8 +47,8 @@ class Modele
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 
-        $name['prenom'] = $resultat[0]['prenom'];
-        $name['name'] = $resultat[0]['nom'];
+        $name['prenom'] = $resultat[0] -> prenom;
+        $name['nom'] = $resultat[0] -> nom;
 
         return $name;
     }
@@ -70,10 +70,10 @@ class Modele
 
         for($i = 0; $i < 4; $i ++) //pour chaque résultat
         {
-            $id = $resultat[$i]['id']; //recup id de la quantité
-            if(!empty($resultat[$i]['quantite'])) //si il y a une quantité
+            $id = $resultat[$i] -> id; //recup id de la quantité
+            if(!empty($resultat[$i] -> quantite)) //si il y a une quantité
             {
-                $fraisForfait[$id] = $resultat[$i]['quantite']; //changer la quantité de l'id donné
+                $fraisForfait[$id] = $resultat[$i] -> quantite; //changer la quantité de l'id donné
             }
         }
 
