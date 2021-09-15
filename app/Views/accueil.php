@@ -16,7 +16,7 @@
 	<head>
 		<meta charset = "utf-8"/>
 		<title>GSB</title>
-		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
+		<link rel = "stylesheet" href = "<?php echo base_url('css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
@@ -24,7 +24,7 @@
 			<h1>Page d'accueil et de connexion</h1>
 		</header>
 		
-		<form action = <?php echo base_url("public/index.php");?> method = "post"><!-- formulaire de connexion -->
+		<form action = <?php echo base_url("index.php");?> method = "post"><!-- formulaire de connexion -->
 			<h2>Connexion</h2>
 			
 			<label for = "login">Login :</label>

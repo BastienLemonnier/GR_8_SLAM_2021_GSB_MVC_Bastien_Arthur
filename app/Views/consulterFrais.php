@@ -3,7 +3,7 @@
 	<head>
 		<meta charset = "utf-8"/>
 		<title>GSB</title>
-		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
+		<link rel = "stylesheet" href = "<?php echo base_url('css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
@@ -17,31 +17,21 @@
 		</header>
 		
 		<nav>
-			<a href="<?php echo base_url ("public/index.php?action=deconnexion");?>">Se déconnecter</a>
+			<a href="<?php echo base_url ("index.php?action=deconnexion");?>">Se déconnecter</a>
 		</nav>
 		
-		<form action = "<?php echo base_url ("public/index.php");?>" method = "post"><!-- formulaire de choix de mois -->
+		<form action = "<?php echo base_url ("index.php");?>" method = "post"><!-- formulaire de choix de mois -->
 			<h2>Changer mois de consultation</h2>
 			
 			<label for = "month_select">Mois :</label>
 			<select id = "month" name = "month_select" id = "month_select" >
 				<?php
-					
-					//Ajouter options select et selectionner options du mois choisi ou du mois courant
-
-					$mois = [ 1 => "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
-					
-					if( isset($_SESSION['mois']) ) {
-						$moisChoisi = $_SESSION['mois'];
-					} else {
-						$moisChoisi = (int)date('m');
-					}
-					
+					$Modele = new \App\Models\Modele();
 					for( $i = 1; $i <= 12; $i ++ ) {
-						if($i == $moisChoisi) {
-							echo "<option value = '".$i."' selected >".$mois[$i]."</option>";
+						if($i == $_SESSION['mois']['num']) {
+							echo "<option value = '".$i."' selected >".$Modele::LISTEMOIS[$i]."</option>";
 						} else {
-							echo "<option value = '".$i."' >".$mois[$i]."</option>";
+							echo "<option value = '".$i."' >".$Modele::LISTEMOIS[$i]."</option>";
 						}
 					}
 				
@@ -49,28 +39,24 @@
 			</select>
 			
 			<input type = "submit" value = "Valider"/><br/>
-			<a href="<?php echo base_url ("public/index.php?action=saisirFrais");?>">Saisie frais</a>
+			<a href="<?php echo base_url ("index.php?action=saisirFrais");?>">Saisie frais</a>
 		</form>
 		
 		<div id="affichageFraisMois">
-			
+			<?php include("sectionFraisMois.php"); ?>
 		</div>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		
 		<script>
-			$( document ).ready(function(){
-				loadAffichage();
-			});
-			
 			$("#month").change(function(){
-				loadAffichage();
+				loadFraisMois();
 			});
 			
-			function loadAffichage () {
+			function loadFraisMois () {
 				var mois = $("#month").val();
-				
-				$("#affichageFraisMois").load("data/getAllFrais.php?month=" + mois);
+
+				$("#affichageFraisMois").load("<?php echo base_url("index.php?action=getFraisMois&mode=ajax&mois="); ?>" + mois);
 			}
 		</script>
 		

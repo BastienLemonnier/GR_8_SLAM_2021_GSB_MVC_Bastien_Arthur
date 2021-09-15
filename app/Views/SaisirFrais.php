@@ -1,12 +1,9 @@
-<?php
-	session_start();
-?>
 <!DOCTYPEhtml>
 <html lang = "fr">
 	<head>
 		<meta charset="utf-8">
 		<title>GSB</title>
-		<link rel = "stylesheet" href = "<?php echo base_url('public/css/mainStyle.css'); ?>"/>
+		<link rel = "stylesheet" href = "<?php echo base_url('css/mainStyle.css'); ?>"/>
 	</head>
 	
 	<body>
@@ -15,29 +12,29 @@
 		</header>
 		
 		<nav>
-			<a href=<?php echo base_url ("public/index.php?action='deconnexion'");?>>Se déconnecter</a>
-			<a href=<?php echo base_url ("public/index.php?action='consulterFrais'");?>>Consultation frais</a>
+			<a href="<?php echo base_url ("index.php?action=deconnexion");?>">Se déconnecter</a>
+			<a href="<?php echo base_url ("index.php?action=consulterFrais");?>">Consultation frais</a>
 		</nav>
 		
-		<form action="<?php echo base_url ("public/index.php");?>" method="post" >
-			<h2>Frais forfaitaires du mois de <?php echo $_SESSION['mois']; ?> :</h2>
+		<form action="<?php echo base_url ("index.php");?>" method="post" >
+			<h2>Frais forfaitaires du mois de <?php echo $_SESSION['mois']['libelle']; ?> :</h2>
 			
 			<label for="etapes">Nombre d'étapes :</label>
-			<input type="number" id="etapes" name="nombre_etapes" value="<?php echo $Etapes;?>"/><br/>
+			<input type="number" id="etapes" name="nombre_etapes" value="<?php echo $_SESSION['FraisForfait']['ETP'];?>"/><br/>
 			
 			<label for="km">Nombre kilomètres :</label>
-			<input type="number" id="km" name="nombre_km" value="<?php echo $Km;?>"/> Km<br/>
+			<input type="number" id="km" name="nombre_km" value="<?php echo $_SESSION['FraisForfait']['KM'];?>"/> Km<br/>
 			
 			<label for="nuitee">Nombre nuitées hors étapes :</label>
-			<input type="number" id="nuitee" name="nombre_nuitee" value="<?php echo $Nuitee;?>"/><br/>
+			<input type="number" id="nuitee" name="nombre_nuitee" value="<?php echo $_SESSION['FraisForfait']['NUI'];?>"/><br/>
 			
 			<label for="repas">Nombre repas hors étapes :</label>
-			<input type="number" id="repas" name="nombre_repas" value="<?php echo $Repas;?>"/><br/>
+			<input type="number" id="repas" name="nombre_repas" value="<?php echo $_SESSION['FraisForfait']['REP'];?>"/><br/>
 			
 			<input type="submit" value="Envoyer"/>
 		</form>
 		
-		<form action="<?php echo base_url ("public/index.php");?>" method="post" >
+		<form action="<?php echo base_url ("index.php");?>" method="post" >
 			<h2>Autres frais :</h2>
 			
 			<label for="libelle">Libellé :</label>
@@ -56,16 +53,16 @@
 		
 		<script>
 			$("#etapes").change(function() {
-				$.post( "fonctions/changeNbEtapes.php", { 'nombre_etapes': $("#etapes").val() } );
+				$.post( "<?php echo base_url ("index.php?mode=ajax");?>", { 'nombre_etapes': $("#etapes").val() } );
 			});
 			$("#km").change(function() {
-				$.post( "fonctions/changeNbKm.php", { 'nombre_km': $("#km").val() } );
+				$.post( "<?php echo base_url ("index.php?mode=ajax");?>", { 'nombre_km': $("#km").val() } );
 			});
 			$("#nuitee").change(function() {
-				$.post( "fonctions/changeNbNuitee.php", { 'nombre_nuitee': $("#nuitee").val() } );
+				$.post( "<?php echo base_url ("index.php?mode=ajax");?>", { 'nombre_nuitee': $("#nuitee").val() } );
 			});
 			$("#repas").change(function() {
-				$.post( "fonctions/changeNbRepas.php", { 'nombre_repas': $("#repas").val() } );
+				$.post( "<?php echo base_url ("index.php?mode=ajax");?>", { 'nombre_repas': $("#repas").val() } );
 			});
 		</script>
 	</body>
