@@ -6,24 +6,21 @@ class Compte extends BaseController
 {
     public function connexion($login, $password)
     {
-        session_start();
-		
-        $Modele = new \App\Models\Modele();
+        $User = new \App\Models\User();
         $Pages = new \App\Controllers\Pages();
         
-        $exist = $Modele -> isUserExists($login); //on vient voir si l'utilisateur existe
+        $exist = $User::isUserExists($login); //on vient voir si l'utilisateur existe
         
         if ( $exist ) { //si l'utilisateur existe
             
-            $pass = $Modele -> getUserPassword($login); //on vient chercher le mot de passe de l'utilisateur
-            //print_r($pass[0] -> mdp);
+            $pass = $User::getUserPassword($login); //on vient chercher le mot de passe de l'utilisateur
             
             if ( $pass == $password ) { //si le mot de passe est bon
                 
                 $_SESSION['connected'] = TRUE;
                 $_SESSION['login'] = $login;
 
-                $name = $Modele -> getUserName($login);
+                $name = $User::getUserName($login);
                 
                 $_SESSION['nom'] = $name['nom'];
                 $_SESSION['prenom'] = $name['prenom'];
@@ -44,7 +41,6 @@ class Compte extends BaseController
 
     public function deconnexion()
     {
-        session_start();
         session_unset();
     }
 }
