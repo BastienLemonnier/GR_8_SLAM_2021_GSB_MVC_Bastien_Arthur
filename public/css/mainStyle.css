@@ -9,7 +9,7 @@
 }
 
 h1, h2, h3, p {
-	color: #048B9A;
+	color: #0B3861;
 }
 
 h1, h2, h3 {
@@ -17,12 +17,12 @@ h1, h2, h3 {
 }
 
 body {
-	background-color: #4CA66B;
+	background-color: #81BEF7;
 }
 
 header, nav, section, form {
-	background-color: #FFF0B8;
-	color: #048B9A;
+	background-color: #FFFF;
+	color: #0B3861;
 	font-family: Tommy;
 	
 	border-color: #444444;
