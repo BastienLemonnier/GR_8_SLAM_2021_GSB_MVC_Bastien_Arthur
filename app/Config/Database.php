@@ -83,7 +83,7 @@ class Database extends Config
     public $auth = [
         'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
         'hostname' => 'localhost',
-        'username' => 'authUser',
+        'username' => 'authedUser',
         'password' => 'GSBmdp',
         'database' => 'GSBV2',
         'DBDriver' => 'MySQLi',
