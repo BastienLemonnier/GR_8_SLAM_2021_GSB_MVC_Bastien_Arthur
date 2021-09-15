@@ -24,7 +24,7 @@
 			<h1>Page d'accueil et de connexion</h1>
 		</header>
 
-		<img src="<?php echo base_url("img/logo.png");?>" alt="Logo GSB" width="30%" style="display: block;margin: 20px auto;"></img>
+		<img src="<?php echo base_url("img/logo2.png");?>" alt="Logo GSB" width="30%" style="display: block;margin: 20px auto;"></img>
 		
 		<form action = <?php echo base_url("index.php");?> method = "post"><!-- formulaire de connexion -->
 			<h2>Connexion</h2>
