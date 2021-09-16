@@ -63,14 +63,14 @@ class Modele
 
     const TYPES_FRAIS = ['ETP', 'KM', 'NUI', 'REP'];
 
-    public function isFicheExiste()
+    public function isFicheExiste($mois)
     {
         $db = db_connect("auth");
 
         $id = User::getUserId($_SESSION['login']);
 
         $sql = "SELECT EXISTS (SELECT * FROM FicheFrais WHERE idVisiteur = ? AND mois = ?) AS 'exist';";
-        $resultat = $db -> query($sql, [$id, $_SESSION['mois']['libelle']]);
+        $resultat = $db -> query($sql, [$id, $mois]);
         $ficheExiste = $resultat -> getResult()[0] -> exist; //on vient voir si la fiche de frais existe
 
         return $ficheExiste;
@@ -84,19 +84,33 @@ class Modele
         $id = User::getUserId($_SESSION['login']);
         $date = date("Y").'-'.date("m").'-'.date("d");
 
-        $ficheExiste = $this -> isFicheExiste();
+        $ficheExiste = $this -> isFicheExiste($_SESSION['mois']['libelle']);
 
         $reqFrais = "";
         $req = "";
         if(!$ficheExiste)
         {
             $reqFrais = "INSERT INTO FicheFrais VALUES (?,?,0,0,?,'CR');";
+            $db -> query($reqFrais, [
+                $id,
+                $_SESSION['mois']['libelle'],
+                $date
+            ]);
+            //print_r("INSERT INTO FicheFrais VALUES (".$id.",".$_SESSION['mois']['libelle'].",0,0,".$date.",'CR');\r\n");
             $req = "INSERT INTO LigneFraisForfait VALUES (?,?,?,?);";
+            //print_r("INSERT INTO LigneFraisForfait VALUES (".$id.",".$_SESSION['mois']['libelle'].",typeFrais,valeurFrais);\r\n");
         }
         else
         {
-            $reqFrais = "UPDATE FicheFrais SET date = ? WHERE idVisiteur = ? AND mois = ?;";
+            $reqFrais = "UPDATE FicheFrais SET dateModif = ? WHERE idVisiteur = ? AND mois = ?;";
+            $db -> query($reqFrais, [
+                $date,
+                $id,
+                $_SESSION['mois']['libelle']
+            ]);
+            //print_r("UPDATE FicheFrais SET dateModif = ".$date." WHERE idVisiteur = ".$id." AND mois = ".$_SESSION['mois']['libelle'].";\r\n");
             $req = "UPDATE LigneFraisForfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = ?;";
+            //print_r("UPDATE LigneFraisForfait SET quantite = valeurFrais WHERE idVisiteur = ".$id." AND mois = ".$_SESSION['mois']['libelle']." AND idFraisForfait = typeFrais;\r\n");
         }
 
         for($i = 0; $i < 4; $i ++)
@@ -106,11 +120,7 @@ class Modele
             {
                 if(!$ficheExiste)
                 {
-                    $db -> query($reqFrais, [
-                        $id,
-                        $_SESSION['mois']['libelle'],
-                        $date
-                    ]);
+                    print_r("INSERT");
                     $db -> query($req, [
                         $id,
                         $_SESSION['mois']['libelle'],
@@ -120,11 +130,6 @@ class Modele
                 }
                 else
                 {
-                    $db -> query($reqFrais, [
-                        $date,
-                        $id,
-                        $_SESSION['mois']['libelle']
-                    ]);
                     $db -> query($req, [
                         $frais[$typeFrais],
                         $id,
@@ -144,27 +149,27 @@ class Modele
         $id = User::getUserId($_SESSION['login']);
         $date = date("Y") . '-' . date("m") . '-' . date("d");
 
-        $ficheExiste = $this -> isFicheExiste();
+        $ficheExiste = $this -> isFicheExiste($moisFrais);
 
         if(!$ficheExiste)
         {
             $reqFiche = "INSERT INTO FicheFrais VALUES ( ?, ?, 0, 0, ?, 'CR');";
-            $db -> query($reqFiche, [$id, $_SESSION['mois']['libelle'], $date]);
+            $db -> query($reqFiche, [$id, $moisFrais, $date]);
 
             $reqLigne = "INSERT INTO LigneFraisForfait VALUES ( ?, ?, ?, ? );";
             for($i = 0; $i < 4; $i ++)
             {
                 $typeFrais = $this::TYPES_FRAIS[$i];
-                $db -> query($reqLigne, [$id, $_SESSION['mois']['libelle'], $typeFrais, 0]);
+                $db -> query($reqLigne, [$id, $moisFrais, $typeFrais, 0]);
             }
         }
         else
         {
-            $reqFiche = "UPDATE FicheFrais SET date = ? WHERE idVisiteur = ? AND mois = ?;";
-            $db -> query($reqFiche, [$date, $id, $_SESSION['mois']['libelle']]);
+            $reqFiche = "UPDATE FicheFrais SET dateModif = ? WHERE idVisiteur = ? AND mois = ?;";
+            $db -> query($reqFiche, [$date, $id, $moisFrais]);
         }
 
         $reqAjoutHF = "INSERT INTO LigneFraisHorsForfait (idVisiteur, mois, libelle, date, montant) VALUES ( ?, ?, ?, ?, ? );";
-        $db -> query($reqAjoutHF, [$id, $_SESSION['mois']['libelle'], $frais['libelle'], $frais['date'], $frais['prix']]);
+        $db -> query($reqAjoutHF, [$id, $moisFrais, $frais['libelle'], $frais['date'], $frais['prix']]);
     }
 }

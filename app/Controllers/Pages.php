@@ -97,9 +97,6 @@ class Pages extends BaseController
         $Compte = new \App\Controllers\Compte();
 
         $Compte -> connexion($login, $password);
-        $month = (int)date('m');
-
-        $this -> consulterFrais($month);
     }
 
     public function deconnexion()

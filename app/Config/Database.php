@@ -31,11 +31,11 @@ class Database extends Config
      * @var array
      */
     public $default = [
-        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
+        'DSN'      => 'mysql:host=localhost; dbname=gsbV2; charset=utf8;',
         'hostname' => 'localhost',
         'username' => 'guestUser',
         'password' => 'GSBmdp',
-        'database' => 'GSBV2',
+        'database' => 'gsbV2',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
@@ -56,11 +56,11 @@ class Database extends Config
      * @var array
      */
     public $guest = [
-        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
+        'DSN'      => 'mysql:host=localhost; dbname=gsbV2; charset=utf8;',
         'hostname' => 'localhost',
         'username' => 'guestUser',
         'password' => 'GSBmdp',
-        'database' => 'GSBV2',
+        'database' => 'gsbV2',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
@@ -81,11 +81,11 @@ class Database extends Config
      * @var array
      */
     public $auth = [
-        'DSN'      => 'mysql:host=localhost; dbname=GSBV2; charset=utf8;',
+        'DSN'      => 'mysql:host=localhost; dbname=gsbV2; charset=utf8;',
         'hostname' => 'localhost',
         'username' => 'authedUser',
         'password' => 'GSBmdp',
-        'database' => 'GSBV2',
+        'database' => 'gsbV2',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
