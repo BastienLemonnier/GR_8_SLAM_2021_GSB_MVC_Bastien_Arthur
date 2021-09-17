@@ -8,6 +8,8 @@ class Compte extends BaseController
     {
         $User = new \App\Models\User();
         $Pages = new \App\Controllers\Pages();
+
+        unset($_SESSION['error']);
         
         $exist = $User::isUserExists($login); //on vient voir si l'utilisateur existe
         
@@ -29,11 +31,11 @@ class Compte extends BaseController
                 exit();
                 
             } else {
-                $_SESSION['error'] = 2;
+                $_SESSION['error'] = "Mot de passe erroné.";
             }
             
         } else {
-            $_SESSION['error'] = 1;
+            $_SESSION['error'] = "Cet utilisateur n'existe pas.";
         }
 
         echo $Pages -> accueil();
