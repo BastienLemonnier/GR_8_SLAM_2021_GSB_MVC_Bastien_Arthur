@@ -27,7 +27,7 @@ class Compte extends BaseController
                 $_SESSION['nom'] = $name['nom'];
                 $_SESSION['prenom'] = $name['prenom'];
                 
-                echo $Pages -> consulterFrais((int)date('m'));
+                $Pages -> consulterFrais((int)date('m'));
                 exit();
                 
             } else {
@@ -38,7 +38,7 @@ class Compte extends BaseController
             $_SESSION['error'] = "Cet utilisateur n'existe pas.";
         }
 
-        echo $Pages -> accueil();
+        $Pages -> accueil();
     }
 
     public function deconnexion()

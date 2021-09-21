@@ -19,7 +19,7 @@ class User
     {
         $db = db_connect("auth");
 
-        $sql = "SELECT id FROM Visiteur WHERE login = ?;";
+        $sql = "SELECT id FROM Visiteur WHERE login = ? LIMIT 1;";
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 
@@ -30,7 +30,7 @@ class User
     {
         $db = db_connect("guest");
 
-        $sql = "SELECT mdp FROM Visiteur WHERE login = ?;";
+        $sql = "SELECT mdp FROM Visiteur WHERE login = ? LIMIT 1;";
         $resultat = $db -> query($sql, [$login]);
         $resultat = $resultat -> getResult();
 

@@ -13,7 +13,7 @@ class Modele
         $_SESSION['mois']['num'] = $numMois;
         $_SESSION['mois']['libelle'] = $this::LISTEMOIS[$numMois];
 
-        $sql = "SELECT quantite, id FROM LigneFraisForfait INNER JOIN FraisForfait ON LigneFraisForfait.idFraisForfait = FraisForfait.id
+        $sql = "SELECT quantite, idFraisForfait FROM LigneFraisForfait
         WHERE idVisiteur = ? AND mois LIKE ? ORDER BY FraisForfait.id;";
         $resultat = $db -> query($sql, [
             User::getUserId($_SESSION['login']),
@@ -27,7 +27,7 @@ class Modele
         {
             if(isset($resultat[$i]))
             {
-                $id = $resultat[$i] -> id; //recup id de la quantité
+                $id = $resultat[$i] -> idFraisForfait; //recup id de la quantité
                 if(!empty($resultat[$i] -> quantite)) //si il y a une quantité
                 {
                     $fraisForfait[$id] = $resultat[$i] -> quantite; //changer la quantité de l'id donné
