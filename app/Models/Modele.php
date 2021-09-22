@@ -14,7 +14,7 @@ class Modele
         $_SESSION['mois']['libelle'] = $this::LISTEMOIS[$numMois];
 
         $sql = "SELECT quantite, idFraisForfait FROM LigneFraisForfait
-        WHERE idVisiteur = ? AND mois LIKE ? ORDER BY FraisForfait.id;";
+        WHERE idVisiteur = ? AND mois LIKE ? ORDER BY idFraisForfait;";
         $resultat = $db -> query($sql, [
             User::getUserId($_SESSION['login']),
             $_SESSION['mois']['libelle']

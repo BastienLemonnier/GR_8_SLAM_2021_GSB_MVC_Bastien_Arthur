@@ -26,6 +26,7 @@
 			<br/>
 			
 			<?php
+				if(isset($_SESSION['error']))
 				echo "<span class='error'>" . $_SESSION['error'] . "</span><br/>";
 			?>
 			
