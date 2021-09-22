@@ -37,7 +37,6 @@ class Compte extends BaseController
         } else {
             $_SESSION['error'] = "Cet utilisateur n'existe pas.";
         }
-
         $Pages -> accueil();
     }
 

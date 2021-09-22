@@ -25,12 +25,6 @@ class Pages extends BaseController
                 $isAjax = true;
             }
         }
-        if(isset($_POST['connexion_login']) && isset($_POST['connexion_password']))
-        {
-            $action = 'connexion';
-            $login = $_POST['connexion_login'];
-            $password = $_POST['connexion_password'];
-        }
         if(isset($_POST['nombre_etapes']) || isset($_POST['nombre_km']) || isset($_POST['nombre_nuitee']) || isset($_POST['nombre_repas']))
         {
             $action = 'changerFrais';
@@ -57,6 +51,18 @@ class Pages extends BaseController
             $month = $_POST['month_select'];
         }
 
+        if(isset($_POST['connexion_login']) && isset($_POST['connexion_password']))
+        {
+            $action = 'connexion';
+            $login = $_POST['connexion_login'];
+            $password = $_POST['connexion_password'];
+        }
+        else
+        if(!isset($_SESSION['connected']) || !$_SESSION['connected'])
+        {
+            $action = 'accueil';
+        }
+
         switch($action)
         {
             case 'consulterFrais' :
@@ -80,6 +86,8 @@ class Pages extends BaseController
             case 'deconnexion' :
                 $this -> deconnexion();
                 break;
+            case 'default' :
+            case 'accueil' :
             default :
                 $this -> accueil();
                 break;
