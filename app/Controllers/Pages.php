@@ -28,14 +28,26 @@ class Pages extends BaseController
         if(isset($_POST['nombre_etapes']) || isset($_POST['nombre_km']) || isset($_POST['nombre_nuitee']) || isset($_POST['nombre_repas']))
         {
             $action = 'changerFrais';
-            if(isset($_POST['nombre_etapes']))
+            if(isset($_POST['nombre_etapes'])) {
                 $frais['ETP'] = $_POST['nombre_etapes'];
-            if(isset($_POST['nombre_km']))
+            } else {
+                $frais['ETP'] = 0;
+            }
+            if(isset($_POST['nombre_km'])) {
                 $frais['KM'] = $_POST['nombre_km'];
-            if(isset($_POST['nombre_nuitee']))
+            } else {
+                $frais['KM'] = 0;
+            }
+            if(isset($_POST['nombre_nuitee'])) {
                 $frais['NUI'] = $_POST['nombre_nuitee'];
-            if(isset($_POST['nombre_repas']))
+            } else {
+                $frais['NUI'] = 0;
+            }
+            if(isset($_POST['nombre_repas'])) {
                 $frais['REP'] = $_POST['nombre_repas'];
+            } else {
+                $frais['REP'] = 0;
+            }
         }
         if(isset($_POST['libelle_frais']) && isset($_POST['date_frais']) && isset($_POST['prix_frais']))
         {
