@@ -131,10 +131,10 @@ class Modele
                 if($leFrais != NULL)
                 {
                     $db -> query($req, [
-                        $frais[$typeFrais],
+                        $leFrais,
                         $id,
                         $_SESSION['mois']['libelle'],
-                        $leFrais
+                        $typeFrais
                     ]);
                 }
             }
