@@ -96,9 +96,7 @@ class Modele
                 $_SESSION['mois']['libelle'],
                 $date
             ]);
-            //print_r("INSERT INTO FicheFrais VALUES (".$id.",".$_SESSION['mois']['libelle'].",0,0,".$date.",'CR');\r\n");
             $req = "INSERT INTO LigneFraisForfait VALUES (?,?,?,?);";
-            //print_r("INSERT INTO LigneFraisForfait VALUES (".$id.",".$_SESSION['mois']['libelle'].",typeFrais,valeurFrais);\r\n");
         }
         else
         {
@@ -108,33 +106,35 @@ class Modele
                 $id,
                 $_SESSION['mois']['libelle']
             ]);
-            //print_r("UPDATE FicheFrais SET dateModif = ".$date." WHERE idVisiteur = ".$id." AND mois = ".$_SESSION['mois']['libelle'].";\r\n");
             $req = "UPDATE LigneFraisForfait SET quantite = ? WHERE idVisiteur = ? AND mois = ? AND idFraisForfait = ?;";
-            //print_r("UPDATE LigneFraisForfait SET quantite = valeurFrais WHERE idVisiteur = ".$id." AND mois = ".$_SESSION['mois']['libelle']." AND idFraisForfait = typeFrais;\r\n");
         }
 
         for($i = 0; $i < 4; $i ++)
         {
             $typeFrais = $this::TYPES_FRAIS[$i];
-            if(isset($frais[$typeFrais]))
+            $leFrais = $frais[$typeFrais];
+            if(!$ficheExiste)
             {
-                if(!$ficheExiste)
+                if($leFrais == NULL)
                 {
-                    print_r("INSERT");
-                    $db -> query($req, [
-                        $id,
-                        $_SESSION['mois']['libelle'],
-                        $typeFrais,
-                        $frais[$typeFrais]
-                    ]);
+                    $leFrais = 0;
                 }
-                else
+                $db -> query($req, [
+                    $id,
+                    $_SESSION['mois']['libelle'],
+                    $typeFrais,
+                    $leFrais
+                ]);
+            }
+            else
+            {
+                if($leFrais != NULL)
                 {
                     $db -> query($req, [
                         $frais[$typeFrais],
                         $id,
                         $_SESSION['mois']['libelle'],
-                        $typeFrais
+                        $leFrais
                     ]);
                 }
             }

@@ -31,22 +31,22 @@ class Pages extends BaseController
             if(isset($_POST['nombre_etapes'])) {
                 $frais['ETP'] = $_POST['nombre_etapes'];
             } else {
-                $frais['ETP'] = 0;
+                $frais['ETP'] = NULL;
             }
             if(isset($_POST['nombre_km'])) {
                 $frais['KM'] = $_POST['nombre_km'];
             } else {
-                $frais['KM'] = 0;
+                $frais['KM'] = NULL;
             }
             if(isset($_POST['nombre_nuitee'])) {
                 $frais['NUI'] = $_POST['nombre_nuitee'];
             } else {
-                $frais['NUI'] = 0;
+                $frais['NUI'] = NULL;
             }
             if(isset($_POST['nombre_repas'])) {
                 $frais['REP'] = $_POST['nombre_repas'];
             } else {
-                $frais['REP'] = 0;
+                $frais['REP'] = NULL;
             }
         }
         if(isset($_POST['libelle_frais']) && isset($_POST['date_frais']) && isset($_POST['prix_frais']))
