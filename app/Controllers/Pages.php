@@ -6,6 +6,7 @@ class Pages extends BaseController
 {
     public function index()
     {
+        //décision de l'action à effectuer selon les données recues
         session_start();
         $action = 'default';
         if(isset($_GET['action']))
@@ -25,6 +26,7 @@ class Pages extends BaseController
                 $isAjax = true;
             }
         }
+        //changement frais
         if(isset($_POST['nombre_etapes']) || isset($_POST['nombre_km']) || isset($_POST['nombre_nuitee']) || isset($_POST['nombre_repas']))
         {
             $action = 'changerFrais';
@@ -49,6 +51,7 @@ class Pages extends BaseController
                 $frais['REP'] = NULL;
             }
         }
+        //ajout frais HF
         if(isset($_POST['libelle_frais']) && isset($_POST['date_frais']) && isset($_POST['prix_frais']))
         {
             $action = 'ajouterFraisHF';
@@ -56,6 +59,7 @@ class Pages extends BaseController
             $frais['date'] = $_POST['date_frais'];
             $frais['prix'] = $_POST['prix_frais'];
         }
+        //consultation frais
         $month = (int)date('m');
         if(isset($_POST['month_select']))
         {
@@ -63,6 +67,7 @@ class Pages extends BaseController
             $month = $_POST['month_select'];
         }
 
+        //connexion ou redirection vers l'accueil si non connecté
         if(isset($_POST['connexion_login']) && isset($_POST['connexion_password']))
         {
             $action = 'connexion';
@@ -75,6 +80,7 @@ class Pages extends BaseController
             $action = 'accueil';
         }
 
+        //appel de fonctions selon l'action
         switch($action)
         {
             case 'consulterFrais' :
