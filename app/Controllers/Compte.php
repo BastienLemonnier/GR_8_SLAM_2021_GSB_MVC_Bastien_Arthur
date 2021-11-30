@@ -43,5 +43,6 @@ class Compte extends BaseController
     public function deconnexion()
     {
         session_unset();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
     }
 }

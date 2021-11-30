@@ -11,7 +11,6 @@
 			<h1>Page de consultation des frais</h1>
 			<?php
 				//affichage nom et prénom de l'utilisateur
-
 				echo "<p>".$_SESSION['nom']." ".$_SESSION['prenom']."</p>";
 			?>
 		</header>
@@ -21,6 +20,7 @@
 		</nav>
 		
 		<form action = "<?php echo base_url ("index.php");?>" method = "post"><!-- formulaire de choix de mois -->
+			<input id="token" name="token" type="hidden" value="<?php echo $_SESSION['token'];?>"/>
 			<h2>Changer mois de consultation</h2>
 			
 			<label for = "month_select">Mois :</label>
@@ -55,8 +55,9 @@
 			
 			function loadFraisMois () {
 				var mois = $("#month").val();
+				var token = $("#token").val();
 
-				$("#affichageFraisMois").load("<?php echo base_url("index.php?action=getFraisMois&mode=ajax&mois="); ?>" + mois);
+				$("#affichageFraisMois").load("<?php echo base_url("index.php?action=getFraisMois&mode=ajax&mois="); ?>" + mois + "&token=" + token);
 			}
 		</script>
 		

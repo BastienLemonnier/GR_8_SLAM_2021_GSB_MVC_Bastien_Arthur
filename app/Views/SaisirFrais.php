@@ -17,6 +17,7 @@
 		</nav>
 		
 		<form action="<?php echo base_url ("index.php");?>" method="post" >
+			<input name="token" type="hidden" value="<?php echo $_SESSION['token'];?>"/>
 			<h2>Frais forfaitaires du mois de <?php echo $_SESSION['mois']['libelle']; ?> :</h2>
 			
 			<label for="etapes">Nombre d'étapes :</label>
@@ -35,6 +36,7 @@
 		</form>
 		
 		<form action="<?php echo base_url ("index.php");?>" method="post" >
+			<input name="token" type="hidden" value="<?php echo $_SESSION['token'];?>"/>
 			<h2>Autres frais :</h2>
 			
 			<label for="libelle">Libellé :</label>
