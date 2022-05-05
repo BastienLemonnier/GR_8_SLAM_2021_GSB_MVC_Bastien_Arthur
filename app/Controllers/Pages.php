@@ -230,6 +230,13 @@ class Pages extends BaseController
         }
     }
 
+    public function kilometresMois($saisi)
+    {
+        $Modele = new \App\Models\Modele();
+        $stocke =  $Modele  -> getKmActuel();
+        $Parcourus = $saisi - $stocke;
+    }
+
     public function securiseInclude($page)
     {
         if(empty($page))

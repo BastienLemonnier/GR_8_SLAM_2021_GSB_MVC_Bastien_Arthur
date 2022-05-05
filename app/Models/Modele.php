@@ -55,6 +55,18 @@ class Modele
         
     }
 
+    public function getKmActuel()
+    {
+        $db = db_connect("auth");
+
+        $sql = "SELECT kmActuel FROM Voiture Where idVisiteur = ?";
+        $resultat = $db -> query($sql, [
+            User::getUserId($_SESSION['login']),
+            $_SESSION['mois']['libelle']
+        ]);
+        $resultat = $resultat -> getResult();
+    }
+
     public function resetMonth()
     {
         $_SESSION['mois']['num'] = (int)date('m');
